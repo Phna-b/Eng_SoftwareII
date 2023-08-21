@@ -38,3 +38,24 @@ entrar.addEventListener("click",(e)=>{
   //passar a sessão para a página de calendário
   window.open("calendar.html?loggedAs=luisguilherme", "_self");
 })
+
+const Singleton = (function(){
+  function Usuario({nome, senha}) {
+    this.nome = nome;
+    this.senha = senha;
+  }
+  let usuario;
+  function novoUsuario(){
+    // AQUI VAI A VALIDAÇÃO
+    const user = new Usuario({nome:"Luis", senha:"123"});
+    return user;
+  }
+  return {
+    getUsuario: () => {
+      if(!usuario){
+        usuario = novoUsuario();
+      }
+      return usuario;
+    }
+  } 
+})();
