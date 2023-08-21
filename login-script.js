@@ -42,42 +42,28 @@ cadastrar.addEventListener("click",(e)=>{
   cadastro();
 });
 
-const Singleton = (function(){
-  function Usuario({nome, senha}) {
-    this.nome = nome;
-    this.senha = senha;
-  }
-  let usuario;
-  function novoUsuario(){
-    // AQUI VAI A VALIDAÇÃO
-    const user = new Usuario({nome:"Luis", senha:"123"});
-    return user;
-  }
-  return {
-    getUsuario: () => {
-      if(!usuario){
-        usuario = novoUsuario();
-      }
-      return usuario;
-    }
-  } 
-})();
-
 function login(){
   if(localStorage.getItem("loggedAs")){
-    alert("Você já está logado como "+localStorage.getItem("loggedAs")+"!");
+    if(typeof localStorage.getItem("loggedAs") == "string")
+      alert("Você já está logado como "+localStorage.getItem("loggedAs")+"!")
+    else
+      alert("Você já está logado como "+JSON.parse(localStorage.getItem("loggedAs")).nome+"!");
+    hrefCalendar();
     return;
   }
   var nome = document.getElementById("user").value;
   var senha = document.getElementById("pwd").value;
-  if(localStorage.getItem(nome)&&localStorage.getItem(nome+senha)){
-    alert("Bem vindo "+nome+"!");
-    usuario = Singleton.getUsuario();
+  if(localStorage.getItem(nome)&&localStorage.getItem(nome+senha)==senha){
     localStorage.setItem("loggedAs",nome);
-    usuario.nome = nome;
+    usuario = Singleton.getUsuario(nome);
+    alert("Bem vindo "+nome+"!");
+    localStorage.setItem("loggedAs",usuario.nome);
+    console.log(localStorage.getItem("loggedAs"));
   }else{
     alert("Usuário ou senha incorretos!");
+    return
   }
+  hrefCalendar();
 }
 
 function cadastro(){
@@ -95,4 +81,10 @@ function cadastro(){
   localStorage.setItem(nome,nome);
   localStorage.setItem(nome+senha1,senha1);
   alert("Usuário cadastrado com sucesso!");
+}
+
+function hrefCalendar(){
+  setTimeout(() => {
+    window.location.href = "calendar.html";
+  }, 1500);
 }
