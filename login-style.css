@@ -51,6 +51,34 @@ a {
   font-size:1.25em;
 }
 
+.button#form-open{
+  display: none;
+}
+
+.button#btnAcessar{
+  padding: 10px 76px;
+  background: #ffffffcc;
+  margin-right: 10px;
+  color:#7d2ae8;
+  font-weight: 600;
+  display: none;
+}
+
+.button#btnSair{
+  padding: 10px 76px;
+  border: 2px solid #ff000065;
+  background: #ff000022;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size:1.25em;
+  font-weight: 400;
+  display: none;
+}
+
+.visivel{
+  display: block !important;
+}
+
 .button:active {
   transform: scale(0.98);
 }

@@ -16,7 +16,9 @@
       <nav class="nav">
         <a href="#" class="nav_logo">EventCallendar</a>
 
-        <button class="button" id="form-open">Login</button>
+        <button class="button visivel" id="form-open">Login</button>
+        <button class="button" id="btnAcessar" onclick="window.location.href='calendar.html'">Acessar calendário</button>
+        <button class="button" id="btnSair" onclick="logout()">SAIR</button>
       </nav>
     </header>
     
@@ -47,7 +49,7 @@
               <a href="#" class="forgot_pw">Esqueceu a senha?</a>
             </div>
 
-            <button class="button" id="entrar">Entrar</button>
+            <button class="button" id="entrar" onclick="login()">Entrar</button>
 
             <div class="login_signup">Não tem um usuário? <a href="#" id="signup">Crie uma conta</a></div>
           </form>
@@ -73,7 +75,7 @@
               <i class="uil uil-eye-slash pw_hide"></i>
             </div>
 
-            <button class="button" id="cadastrar">Cadastrar</button>
+            <button class="button" id="cadastrar" onclick="cadastro()">Cadastrar</button>
 
             <div class="login_signup">Já tem um usuário? <a href="#" id="login">Faça log-in</a></div>
           </form>

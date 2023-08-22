@@ -5,8 +5,10 @@ const formOpenBtn = document.querySelector("#form-open"),
   signupBtn = document.querySelector("#signup"),
   loginBtn = document.querySelector("#login"),
   pwShowHide = document.querySelectorAll(".pw_hide");
-  entrar = document.querySelector("#entrar");
-  cadastrar = document.querySelector("#cadastrar");
+  let entrar = document.querySelector("#entrar");
+  let cadastrar = document.querySelector("#cadastrar");
+  let btnAcessar = document.querySelector("#btnAcessar");
+  let btnSair = document.querySelector("#btnSair");
 
 formOpenBtn.addEventListener("click", () => home.classList.add("show"));
 formCloseBtn.addEventListener("click", () => home.classList.remove("show"));
@@ -24,6 +26,19 @@ pwShowHide.forEach((icon) => {
   });
 });
 
+function toggleBotaoAcessar(){
+  if(localStorage.getItem("loggedAs")){
+    formOpenBtn.classList.remove("visivel");
+    btnAcessar.classList.add("visivel");
+    btnSair.classList.add("visivel");
+  }else{
+    alert('nao tem gente');
+    formOpenBtn.classList.add("visivel");
+    btnAcessar.classList.remove("visivel");
+    btnSair.classList.remove("visivel");
+  }
+}
+
 signupBtn.addEventListener("click", (e) => {
   e.preventDefault();
   formContainer.classList.add("active");
@@ -31,15 +46,6 @@ signupBtn.addEventListener("click", (e) => {
 loginBtn.addEventListener("click", (e) => {
   e.preventDefault();
   formContainer.classList.remove("active");
-});
-
-entrar.addEventListener("click",(e)=>{
-  //passar a sessão para a página de calendário
-  // window.open("calendar.html?loggedAs=luisguilherme", "_self");
-  login();
-});
-cadastrar.addEventListener("click",(e)=>{
-  cadastro();
 });
 
 function login(){
@@ -83,8 +89,14 @@ function cadastro(){
   alert("Usuário cadastrado com sucesso!");
 }
 
+document.addEventListener("load",toggleBotaoAcessar());
+
 function hrefCalendar(){
   setTimeout(() => {
     window.location.href = "calendar.html";
   }, 1500);
+}
+
+function logout(){
+  
 }
