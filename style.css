@@ -670,3 +670,19 @@ body {
   display: none;
   overflow: hidden;
 }
+
+#painel h2,
+#painel h3,
+#painel h4,
+#painel p{
+  padding: .5em;
+}
+
+.d-none{
+  display: none;
+}
+
+.d-block{
+  display: block;
+}
+

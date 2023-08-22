@@ -453,7 +453,10 @@ function convertTime(time) {
   return time;
 }
 
-if(usuario/*.type="adm"*/){
+if(usuario.tipo=="admin"){
+
+  document.getElementById('content').setAttribute('style','margin-right:3em');
+  document.getElementById('admOnly').setAttribute('class','container d-block');
   let div=document.getElementById('painel');
   let usuarios=localStorage.getItem('userlist').replace(/((null,)|(,null,))/g,'').split(',')
   usuarios.forEach((usuario)=>{

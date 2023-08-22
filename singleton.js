@@ -1,19 +1,31 @@
+
+
+
+
+
+
+
 const Singleton = (function(user){
-    function Usuario(nomeUsuario) {
+    function userFactory(tipo) {
         this.nome = localStorage.getItem("loggedAs"),
         this.logadoDesde = localStorage.getItem(this.nome+"logadoDesde"),
         this.events = localStorage.getItem(this.nome+"-events");
+        this.tipo = (tipo)?'admin':'user';
     }
     let usuario;
-    function novoUsuario(nomeUsuario){
-      var nomeUsuario=localStorage.getItem("loggedAs");
-      const user = new Usuario(nomeUsuario);
-      return user;
+    function Usuario(){
+      return new userFactory(0);
+    }
+    function Admin(){
+      return new userFactory(1);
     }
     return {
       getUsuario: () => {
         if(!usuario){
-          usuario = novoUsuario();
+          if(localStorage.getItem("loggedAs")=="admin"||localStorage.getItem("loggedAs")=="adm")
+            usuario = Admin();
+          else
+            usuario = Usuario();
         }
         return usuario;
       }
