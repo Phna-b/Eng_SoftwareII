@@ -452,3 +452,41 @@ function convertTime(time) {
   time = timeHour + ":" + timeMin + " " + timeFormat;
   return time;
 }
+
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    /* Toggle between adding and removing the "active" class,
+    to highlight the button that controls the panel */
+    this.classList.toggle("active");
+
+    /* Toggle between hiding and showing the active panel */
+    var panel = this.nextElementSibling;
+    if (panel.style.display === "block") {
+      panel.style.display = "none";
+    } else {
+      panel.style.display = "block";
+    }
+  });
+}
+
+if(usuario/*.type="adm"*/){
+  let div=document.getElementById('painel');
+  let usuarios=localStorage.getItem('userlist').split(',');
+  console.log(usuarios);
+  usuarios.forEach((usuario)=>{
+    console.log(usuario);
+    let section = document.createElement('button');
+    section.setAttribute('class',"accordion");
+    section.innerHTML=usuario;
+    let details = document.createElement('div');
+    details.setAttribute('class',"panel");
+    let p=document.createElement('p');
+    p.innerHTML=localStorage.getItem(usuario+"-events");
+    section.appendChild(details);
+    details.appendChild(p);
+    div.appendChild(section);
+  });
+}

@@ -84,6 +84,7 @@ function cadastro(){
   }
   localStorage.setItem(nome,nome);
   localStorage.setItem(nome+"pwd",senha1);
+  localStorage.setItem("userlist",localStorage.getItem("userlist")+","+nome);
   alert("Usuário cadastrado com sucesso!");
 }
 
