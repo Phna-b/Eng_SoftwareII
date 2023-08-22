@@ -63,8 +63,6 @@ function login(){
     localStorage.setItem("loggedAs",nome);
     usuario = Singleton.getUsuario(nome);
     alert("Bem vindo "+nome+"!");
-    localStorage.setItem("loggedAs",usuario.nome);
-    console.log(localStorage.getItem("loggedAs"));
   }else{
     alert("Usuário ou senha incorretos!");
     return

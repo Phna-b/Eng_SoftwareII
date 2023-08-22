@@ -28,6 +28,9 @@ const Singleton = (function(user){
       window.location.href = "index.html";
     }else{
       usuario = Singleton.getUsuario();
+      if(temp_regMatch&&temp_regMatch[0]=='calendar.html'){
+        document.getElementById('calendarioDe').innerHTML="Calendário de "+usuario.nome;
+      }
     }
   }
 
