@@ -37,7 +37,7 @@ const Singleton = (function(user){
   function logout(){
     if(confirm("Tem certeza que deseja sair?")){
       thanks = "Obrigado por utilizar nosso sistema, "+usuario.nome+"!";
-      thanks+="\n\nCalendário de eventos - Um trabalho prático de Engenharia de Software II";
+      thanks+="\n\nCalendário de eventos - Um trabalho prático de Engenharia de Software II ";
       thanks+="trazido a vocês por:\nLuís Guilherme L. Aguiar - 19.1.8025";
       thanks+="\nPedro Henrique Nunes - 19.2.8008";
       alert(thanks);
