@@ -1,13 +1,3 @@
-function checkLogin() {
-  console.log('checkLogin');
-  if(localStorage.getItem("loggedAs")=="null"||!localStorage.getItem("loggedAs")||localStorage.getItem("loggedAs")==null){
-    alert("Faça login para acessar o calendário!");
-    window.location.href = "index.html";
-  }else{
-    usuario = Singleton.getUsuario();
-    console.log(usuario)
-  }
-}
 document.addEventListener("load", checkLogin());
 const calendar = document.querySelector(".calendar"),
   date = document.querySelector(".date"),
@@ -440,16 +430,16 @@ eventsContainer.addEventListener("click", (e) => {
 
 //function to save events in local storage
 function saveEvents() {
-  localStorage.setItem(usuario.nome+"events", JSON.stringify(eventsArr));
+  localStorage.setItem(usuario.nome+"-events", JSON.stringify(eventsArr));
 }
 
 //function to get events from local storage
 function getEvents() {
   //check if events are already saved in local storage then return event else nothing
-  if (localStorage.getItem(usuario.nome+"events") === null) {
+  if (localStorage.getItem(usuario.nome+"-events") === null) {
     return;
   }
-  eventsArr.push(...JSON.parse(localStorage.getItem(usuario.nome+"events")));
+  eventsArr.push(...JSON.parse(localStorage.getItem(usuario.nome+"-events")));
 }
 
 function convertTime(time) {
@@ -461,9 +451,4 @@ function convertTime(time) {
   timeHour = timeHour % 12 || 12;
   time = timeHour + ":" + timeMin + " " + timeFormat;
   return time;
-}
-
-function sair(){
-  localStorage.removeItem("loggedAs");
-  window.location.href = "index.html";
 }

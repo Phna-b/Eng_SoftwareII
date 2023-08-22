@@ -32,11 +32,11 @@ function toggleBotaoAcessar(){
     btnAcessar.classList.add("visivel");
     btnSair.classList.add("visivel");
   }else{
-    alert('nao tem gente');
     formOpenBtn.classList.add("visivel");
     btnAcessar.classList.remove("visivel");
     btnSair.classList.remove("visivel");
   }
+  checkLogin();
 }
 
 signupBtn.addEventListener("click", (e) => {
@@ -59,7 +59,7 @@ function login(){
   }
   var nome = document.getElementById("user").value;
   var senha = document.getElementById("pwd").value;
-  if(localStorage.getItem(nome)&&localStorage.getItem(nome+senha)==senha){
+  if(localStorage.getItem(nome)&&localStorage.getItem(nome+"pwd")==senha){
     localStorage.setItem("loggedAs",nome);
     usuario = Singleton.getUsuario(nome);
     alert("Bem vindo "+nome+"!");
@@ -85,7 +85,7 @@ function cadastro(){
     return;
   }
   localStorage.setItem(nome,nome);
-  localStorage.setItem(nome+senha1,senha1);
+  localStorage.setItem(nome+"pwd",senha1);
   alert("Usuário cadastrado com sucesso!");
 }
 
@@ -95,8 +95,4 @@ function hrefCalendar(){
   setTimeout(() => {
     window.location.href = "calendar.html";
   }, 1500);
-}
-
-function logout(){
-  
 }
