@@ -453,40 +453,41 @@ function convertTime(time) {
   return time;
 }
 
-var acc = document.getElementsByClassName("accordion");
-var i;
+if(usuario/*.type="adm"*/){
+  let div=document.getElementById('painel');
+  let usuarios=localStorage.getItem('userlist').replace(/((null,)|(,null,))/g,'').split(',')
+  usuarios.forEach((usuario)=>{
+    let section = document.createElement('button');
+    section.setAttribute('class',"accordion");
+    section.setAttribute('onclick',"togglePanel('panel-"+usuario+"')");
+    section.innerHTML='<h1>'+usuario+'</h1>';
+    let details = document.createElement('div');
+    details.setAttribute('class',"panel");
+    details.setAttribute('id',"panel-"+usuario);
+    JSON.parse(localStorage.getItem(usuario+"-events")).forEach((dia)=>{
+      let hr = document.createElement('hr');
+      hr.setAttribute('style','margin: 1em 0; padding:0')
+      details.appendChild(hr);
+      let h3=document.createElement('h3');
+      h3.innerHTML=dia.day+'/'+dia.month+'/'+dia.year;
+      details.appendChild(h3);
+      dia.events.forEach((evento)=>{
+        let h2=document.createElement('h2');
+        h2.innerHTML = evento.title;
+        let h4 =document.createElement('h4');
+        var duracao = evento.time;
+        h4.innerHTML='Das '+evento.time.replaceAll(/ AM|PM/g,'').replace('-','até as');
+        details.appendChild(h2);
+        details.appendChild(h4);
+      })
+    })
 
-for (i = 0; i < acc.length; i++) {
-  acc[i].addEventListener("click", function() {
-    /* Toggle between adding and removing the "active" class,
-    to highlight the button that controls the panel */
-    this.classList.toggle("active");
-
-    /* Toggle between hiding and showing the active panel */
-    var panel = this.nextElementSibling;
-    if (panel.style.display === "block") {
-      panel.style.display = "none";
-    } else {
-      panel.style.display = "block";
-    }
+    section.appendChild(details);
+    div.appendChild(section);
   });
 }
 
-if(usuario/*.type="adm"*/){
-  let div=document.getElementById('painel');
-  let usuarios=localStorage.getItem('userlist').split(',');
-  console.log(usuarios);
-  usuarios.forEach((usuario)=>{
-    console.log(usuario);
-    let section = document.createElement('button');
-    section.setAttribute('class',"accordion");
-    section.innerHTML=usuario;
-    let details = document.createElement('div');
-    details.setAttribute('class',"panel");
-    let p=document.createElement('p');
-    p.innerHTML=localStorage.getItem(usuario+"-events");
-    section.appendChild(details);
-    details.appendChild(p);
-    div.appendChild(section);
-  });
+function togglePanel(nome){
+  var panel = document.getElementById(nome);
+  (panel.style.display === "block")?  panel.style.display = "none":  panel.style.display = "block";
 }
