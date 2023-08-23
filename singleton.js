@@ -1,10 +1,3 @@
-
-
-
-
-
-
-
 const Singleton = (function(user){
     function userFactory(tipo) {
         this.nome = localStorage.getItem("loggedAs"),
@@ -32,6 +25,8 @@ const Singleton = (function(user){
     } 
   })();
 
+
+  // INTEGRAÇÕES PERSONALIZADAS
   function checkLogin() {
     temp_loggedAs = localStorage.getItem("loggedAs");
     temp_regMatch = window.location.href.match(/(calendar.html)/g);
@@ -45,6 +40,8 @@ const Singleton = (function(user){
       }
     }
   }
+
+
 
   function logout(){
     if(confirm("Tem certeza que deseja sair?")){

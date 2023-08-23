@@ -1,4 +1,6 @@
+//INICIALIZAR SINGLETON
 document.addEventListener("load", checkLogin());
+//
 const calendar = document.querySelector(".calendar"),
   date = document.querySelector(".date"),
   daysContainer = document.querySelector(".days"),

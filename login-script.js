@@ -10,8 +10,12 @@ const formOpenBtn = document.querySelector("#form-open"),
   let btnAcessar = document.querySelector("#btnAcessar");
   let btnSair = document.querySelector("#btnSair");
 
+
+
 formOpenBtn.addEventListener("click", () => home.classList.add("show"));
 formCloseBtn.addEventListener("click", () => home.classList.remove("show"));
+
+
 
 pwShowHide.forEach((icon) => {
   icon.addEventListener("click", () => {
@@ -26,6 +30,8 @@ pwShowHide.forEach((icon) => {
   });
 });
 
+
+
 function toggleBotaoAcessar(){
   if(localStorage.getItem("loggedAs")){
     formOpenBtn.classList.remove("visivel");
@@ -39,6 +45,8 @@ function toggleBotaoAcessar(){
   checkLogin();
 }
 
+
+
 signupBtn.addEventListener("click", (e) => {
   e.preventDefault();
   formContainer.classList.add("active");
@@ -48,27 +56,7 @@ loginBtn.addEventListener("click", (e) => {
   formContainer.classList.remove("active");
 });
 
-function login(){
-  if(localStorage.getItem("loggedAs")){
-    if(typeof localStorage.getItem("loggedAs") == "string")
-      alert("Você já está logado como "+localStorage.getItem("loggedAs")+"!")
-    else
-      alert("Você já está logado como "+JSON.parse(localStorage.getItem("loggedAs")).nome+"!");
-    hrefCalendar();
-    return;
-  }
-  var nome = document.getElementById("user").value;
-  var senha = document.getElementById("pwd").value;
-  if(localStorage.getItem(nome)&&localStorage.getItem(nome+"pwd")==senha){
-    localStorage.setItem("loggedAs",nome);
-    usuario = Singleton.getUsuario(nome);
-    alert("Bem vindo "+nome+"!");
-  }else{
-    alert("Usuário ou senha incorretos!");
-    return
-  }
-  hrefCalendar();
-}
+
 
 function cadastro(){
   var nome = document.getElementById("novoUsername").value;
@@ -88,7 +76,37 @@ function cadastro(){
   alert("Usuário cadastrado com sucesso!");
 }
 
+
+
+function login(){
+  if(localStorage.getItem("loggedAs")){
+    if(typeof localStorage.getItem("loggedAs") == "string")
+      alert("Você já está logado como "+localStorage.getItem("loggedAs")+"!")
+    else
+      alert("Você já está logado como "+JSON.parse(localStorage.getItem("loggedAs")).nome+"!");
+    hrefCalendar();
+    return;
+  }
+  var nome = document.getElementById("user").value;
+  var senha = document.getElementById("pwd").value;
+  if(localStorage.getItem(nome)&&localStorage.getItem(nome+"pwd")==senha){
+    localStorage.setItem("loggedAs",nome);
+    // CHAMADA
+    usuario = Singleton.getUsuario(nome);
+    alert("Bem vindo "+nome+"!");
+  }else{
+    alert("Usuário ou senha incorretos!");
+    return
+  }
+  hrefCalendar();
+}
+
+
+
+// INICIALIZAR SINGLETON
 document.addEventListener("load",toggleBotaoAcessar());
+
+
 
 function hrefCalendar(){
   setTimeout(() => {
